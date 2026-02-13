@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Gaby ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Georgia', serif;
+    background: radial-gradient(circle at top, #ff758c, #ff7eb3);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+    text-align:center;
+}
+
+.container{
+    background: rgba(0,0,0,0.35);
+    padding:40px;
+    border-radius:20px;
+    width:90%;
+    max-width:500px;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 2s ease-in-out;
+    z-index:2;
+}
+
+h1{
+    margin-bottom:15px;
+}
+
+p{
+    min-height:100px;
+    font-size:18px;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    background:white;
+    color:#ff4d6d;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff4d6d;
+    color:white;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Corazones */
+.heart{
+    position:absolute;
+    color:white;
+    animation: float 6s linear infinite;
+    font-size:20px;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh); opacity:1;}
+    to{transform:translateY(-10vh); opacity:0;}
+}
+
+/* Ocultar reproductor */
+iframe{
+    display:none;
+}
+</style>
+</head>
+
+<body onclick="activarMusica()">
+
+<!-- Música -->
+<iframe id="musica"
+src="https://www.youtube.com/embed/4QWn2L9dX1E?autoplay=1&loop=1&playlist=4QWn2L9dX1E"
+allow="autoplay">
+</iframe>
+
+<div class="container">
+    <h1>Para mi Gaby 💖</h1>
+    <p id="mensaje">
+        Gabriela… hoy no quise darte algo material.
+        Quise darte algo que se descubra poco a poco.
+    </p>
+    <button onclick="mostrarMensaje()">Haz clic mi amor 💌</button>
+</div>
+
+<script>
+const mensajes = [
+"Gaby, desde que llegaste a mi vida entendí que Dios me había dado un regalo perfecto.",
+"Eres mi compañera, mi ayuda idónea, mi paz y mi alegría diaria.",
+"\"El amor es paciente, es bondadoso... todo lo soporta, todo lo espera.\" — 1 Corintios 13:7",
+"Gracias por orar conmigo, por creer conmigo y por caminar conmigo.",
+"\"Las muchas aguas no podrán apagar el amor.\" — Cantares 8:7",
+"Cada día a tu lado confirma que tomé la mejor decisión de mi vida.",
+"\"El que halla esposa halla el bien.\" — Proverbios 18:22",
+"Sorpresa final ❤️: Gaby, prometo seguir eligiéndote todos los días… hasta que Dios nos permita envejecer juntos."
+];
+
+let index = 0;
+
+function mostrarMensaje(){
+    document.getElementById("mensaje").innerText = mensajes[index];
+    index++;
+    if(index >= mensajes.length){
+        index = 0;
+    }
+}
+
+/* Activar música al primer toque */
+function activarMusica(){
+    document.getElementById("musica").style.display = "block";
+}
+
+/* Generar corazones */
+function crearCorazon(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (Math.random()*20 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },6000);
+}
+
+setInterval(crearCorazon, 800);
+</script>
+
+</body>
+</html>
