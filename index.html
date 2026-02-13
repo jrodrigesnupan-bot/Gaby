@@ -3,40 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Gaby ❤️</title>
+<title>Para Mi Gaby ❤️</title>
 
 <style>
 body{
     margin:0;
     font-family: 'Georgia', serif;
-    background: radial-gradient(circle at top, #ff758c, #ff7eb3);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    color:white;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
     text-align:center;
+    color:white;
+    overflow-x:hidden;
 }
 
 .container{
-    background: rgba(0,0,0,0.35);
-    padding:40px;
-    border-radius:20px;
-    width:90%;
-    max-width:500px;
-    backdrop-filter: blur(8px);
-    animation: fadeIn 2s ease-in-out;
-    z-index:2;
+    padding:40px 20px;
 }
 
 h1{
-    margin-bottom:15px;
+    margin-top:30px;
 }
 
 p{
-    min-height:100px;
     font-size:18px;
+    min-height:80px;
 }
 
 button{
@@ -47,6 +36,7 @@ button{
     cursor:pointer;
     background:white;
     color:#ff4d6d;
+    margin:10px;
     transition:0.3s;
 }
 
@@ -55,58 +45,68 @@ button:hover{
     color:white;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
+/* Galería */
+.gallery{
+    display:flex;
+    overflow-x:auto;
+    gap:15px;
+    padding:20px;
+}
+
+.gallery img{
+    height:250px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
 /* Corazones */
 .heart{
-    position:absolute;
+    position:fixed;
+    bottom:-20px;
     color:white;
-    animation: float 6s linear infinite;
-    font-size:20px;
+    animation:float 6s linear infinite;
 }
 
 @keyframes float{
-    from{transform:translateY(100vh); opacity:1;}
-    to{transform:translateY(-10vh); opacity:0;}
-}
-
-/* Ocultar reproductor */
-iframe{
-    display:none;
+    from{transform:translateY(0);}
+    to{transform:translateY(-100vh);opacity:0;}
 }
 </style>
 </head>
 
-<body onclick="activarMusica()">
+<body>
 
-<!-- Música -->
-<iframe id="musica"
-src="https://www.youtube.com/embed/4QWn2L9dX1E?autoplay=1&loop=1&playlist=4QWn2L9dX1E"
-allow="autoplay">
-</iframe>
+<audio id="musica" loop>
+    <source src="morfina.mp3" type="audio/mpeg">
+</audio>
 
 <div class="container">
-    <h1>Para mi Gaby 💖</h1>
-    <p id="mensaje">
-        Gabriela… hoy no quise darte algo material.
-        Quise darte algo que se descubra poco a poco.
-    </p>
-    <button onclick="mostrarMensaje()">Haz clic mi amor 💌</button>
+
+<h1>Para mi Gaby 💖</h1>
+
+<p id="mensaje">
+Gabriela… hoy quiero recordarte lo especial que eres para mí.
+</p>
+
+<button onclick="mostrarMensaje()">Descubrir mensaje 💌</button>
+<button onclick="activarMusica()">Activar nuestra canción 🎵</button>
+
+<div class="gallery">
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+    <img src="foto3.jpg">
+</div>
+
 </div>
 
 <script>
+
 const mensajes = [
-"Gaby, desde que llegaste a mi vida entendí que Dios me había dado un regalo perfecto.",
-"Eres mi compañera, mi ayuda idónea, mi paz y mi alegría diaria.",
-"\"El amor es paciente, es bondadoso... todo lo soporta, todo lo espera.\" — 1 Corintios 13:7",
-"Gracias por orar conmigo, por creer conmigo y por caminar conmigo.",
+"Gaby, eres el regalo perfecto que Dios puso en mi vida.",
+"\"El amor es paciente, es bondadoso... todo lo soporta.\" — 1 Corintios 13:7",
+"Gracias por caminar conmigo de la mano de Dios.",
 "\"Las muchas aguas no podrán apagar el amor.\" — Cantares 8:7",
-"Cada día a tu lado confirma que tomé la mejor decisión de mi vida.",
-"\"El que halla esposa halla el bien.\" — Proverbios 18:22",
-"Sorpresa final ❤️: Gaby, prometo seguir eligiéndote todos los días… hasta que Dios nos permita envejecer juntos."
+"Prometo seguir eligiéndote cada día de mi vida ❤️"
 ];
 
 let index = 0;
@@ -119,26 +119,22 @@ function mostrarMensaje(){
     }
 }
 
-/* Activar música al primer toque */
 function activarMusica(){
-    document.getElementById("musica").style.display = "block";
+    document.getElementById("musica").play();
 }
 
-/* Generar corazones */
 function crearCorazon(){
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (Math.random()*20 + 15) + "px";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
     document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },6000);
+    setTimeout(()=>{heart.remove();},6000);
 }
 
-setInterval(crearCorazon, 800);
+setInterval(crearCorazon,800);
+
 </script>
 
 </body>
